@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.ibm.rides.components.CustomBottomSheet
 import com.ibm.rides.core.utils.Constants
 import com.ibm.rides.databinding.FragmentVehicleDetailsBinding
 import com.ibm.rides.remote.dto.VehicleModelItem
@@ -18,6 +19,7 @@ class VehicleDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentVehicleDetailsBinding
     private val viewModel by activityViewModels<HomeViewModel>()
+    private lateinit var vehicle: VehicleModelItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,10 +39,10 @@ class VehicleDetailsFragment : Fragment() {
         val bundle = arguments
         val itemAsString = bundle?.getString(Constants.VEHICLE_EXTRA)
         if (itemAsString != null) {
-            val item = Gson().fromJson<VehicleModelItem>(
+            vehicle = Gson().fromJson<VehicleModelItem>(
                 itemAsString, object : TypeToken<VehicleModelItem>() {}.type
             )
-            bindDataWithUI(item)
+            bindDataWithUI(vehicle)
         }
 
         setUpClicks()
@@ -50,6 +52,11 @@ class VehicleDetailsFragment : Fragment() {
     private fun setUpClicks() {
         binding.ivBack.setOnClickListener {
             viewModel.back()
+        }
+
+        binding.buttonGetEmittedCarbon.setOnClickListener {
+            val customBottomSheet = CustomBottomSheet(vehicle)
+            customBottomSheet.show(requireActivity().supportFragmentManager, "VEHICLE")
         }
     }
 
