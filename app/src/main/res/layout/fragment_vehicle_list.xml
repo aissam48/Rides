@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <TextView
+        android:id="@+id/tvVehicleList"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:text="@string/vehicle_list"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        />
+    <EditText
+        android:id="@+id/etValues"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvVehicleList"
+        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:inputType="number"
+        android:hint="@string/value"
+        android:textColorHint="@color/textColorHint"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:background="@drawable/bg_edittext"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        />
+
+    <TextView
+        android:id="@+id/buttonGetRides"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etValues"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:text="@string/get_rides"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_button"
+        />
+
+    <ProgressBar
+        android:id="@+id/prLoadingData"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintStart_toStartOf="@id/buttonGetRides"
+        app:layout_constraintEnd_toEndOf="@id/buttonGetRides"
+        app:layout_constraintBottom_toBottomOf="@id/buttonGetRides"
+        app:layout_constraintTop_toTopOf="@id/buttonGetRides"
+        android:indeterminateTint="@color/black"
+        android:visibility="gone"
+        tools:visibility="visible"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRides"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonGetRides"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_ride"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginEnd="30dp"
+        />
+
+    <TextView
+        android:id="@+id/tvEmptyData"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonGetRides"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/no_data_fetched_yet"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
