@@ -13,7 +13,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/ic_close"
-        android:layout_margin="25dp"
+        android:layout_margin="@dimen/dimen_25dp"
         />
 
     <TextView
@@ -24,12 +24,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"
-        android:layout_marginEnd="30dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginEnd="@dimen/dimen_30dp"
+        android:layout_marginStart="@dimen/dimen_30dp"
         android:text="@string/vehicle_details"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/dimen_30dp"
         android:textColor="@color/black"
-        android:textSize="25sp"
+        android:textSize="@dimen/dimen_25sp"
         android:textStyle="bold"
         />
 
@@ -39,11 +39,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvVehicleDetails"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginHorizontal="@dimen/margin_medium"
+        app:layout_constraintBottom_toTopOf="@id/buttonGetEmittedCarbon"
+        android:layout_marginHorizontal="@dimen/dimen_30dp"
         android:orientation="vertical"
         android:background="@drawable/bg_vehicle_details_card"
-        android:padding="20dp"
+        android:padding="@dimen/dimen_20dp"
         >
 
         <TextView
@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/vin"
-            android:textSize="20sp"
+            android:textSize="@dimen/dimen_20sp"
             android:textColor="@color/black"
             android:textStyle="bold"
             />
@@ -60,17 +60,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Vin"
-            android:textSize="20sp"
+            android:textSize="@dimen/dimen_20sp"
             android:textColor="@color/white"
             android:textStyle="bold"
             />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/dimen_1dp"
             android:background="@color/color1"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
             />
 
         <TextView
@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/make_and_model"
-            android:textSize="20sp"
+            android:textSize="@dimen/dimen_20sp"
             android:textColor="@color/black"
             android:textStyle="bold"
             />
@@ -87,17 +87,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Make and model"
-            android:textSize="20sp"
+            android:textSize="@dimen/dimen_20sp"
             android:textColor="@color/white"
             android:textStyle="bold"
             />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/dimen_1dp"
             android:background="@color/color1"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
             />
 
         <TextView
@@ -105,7 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/color"
-            android:textSize="20sp"
+            android:textSize="@dimen/dimen_20sp"
             android:textColor="@color/black"
             android:textStyle="bold"
             />
@@ -114,24 +114,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="color"
-            android:textSize="20sp"
+            android:textSize="@dimen/dimen_20sp"
             android:textColor="@color/white"
             android:textStyle="bold"
             />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/dimen_1dp"
             android:background="@color/color1"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
             />
         <TextView
             android:id="@+id/tvCarType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/car_type"
-            android:textSize="20sp"
+            android:textSize="@dimen/dimen_20sp"
             android:textColor="@color/black"
             android:textStyle="bold"
             />
@@ -140,14 +140,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Car type"
-            android:textSize="20sp"
+            android:textSize="@dimen/dimen_20sp"
             android:textColor="@color/white"
             android:textStyle="bold"
             />
 
-
-
     </LinearLayout>
 
+
+    <TextView
+        android:id="@+id/buttonGetEmittedCarbon"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dimen_55dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/dimen_30dp"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:layout_marginEnd="@dimen/dimen_30dp"
+        android:layout_marginStart="@dimen/dimen_30dp"
+        android:text="@string/emitted_carbon"
+        android:gravity="center"
+        android:textSize="@dimen/dimen_18sp"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_button"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

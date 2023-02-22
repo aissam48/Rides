@@ -3,8 +3,8 @@
 
     <item>
         <shape>
-            <gradient android:startColor="@color/color1" android:endColor="@color/color2"/>
-            <corners android:radius="@dimen/dimen_30dp"/>
+            <solid android:color="@color/white"/>
+            <corners android:topLeftRadius="@dimen/dimen_30dp" android:topRightRadius="@dimen/dimen_30dp"/>
         </shape>
     </item>
 </selector>

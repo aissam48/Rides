@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.ibm.rides.R
 import com.ibm.rides.core.utils.*
@@ -20,6 +21,7 @@ class VehicleListFragment : Fragment() {
     private val viewModel by activityViewModels<HomeViewModel>()
     lateinit var vehicleListAdapter: VehicleListAdapter
     private val listOfRides = mutableListOf<VehicleModelItem>()
+    private var lastSize = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +41,13 @@ class VehicleListFragment : Fragment() {
         initAdapter()
         collectData()
         setUpClicks()
+        refreshData()
+    }
+
+    private fun refreshData() {
+        binding.root.setOnRefreshListener {
+            getRidesData(lastSize)
+        }
     }
 
 
@@ -46,13 +55,36 @@ class VehicleListFragment : Fragment() {
 
         binding.buttonGetRides.setOnClickListener {
             val size = binding.etValues.text.toString().trim()
-            val params = hashMapOf<String, Any>()
-            params[ApiField.SIZE] = size
-            viewModel.onGetRides(params)
-            binding.etValues.text.clear()
+            val sizeInt = size.toValidatedInt()
+            if (sizeInt == null) {
+                Toast.makeText(
+                    requireContext(),
+                    requireContext().getString(R.string.error_message_unvalidate_range),
+                    Toast.LENGTH_LONG
+                ).show()
+            } else {
+                if (RangeValidation.validate(sizeInt)) {
+                    lastSize = sizeInt
+                    getRidesData(sizeInt)
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        requireContext().getString(R.string.error_message_unvalidate_range),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+
+            }
+
             requireActivity().hideKeyboard()
         }
 
+    }
+
+    private fun getRidesData(size: Int) {
+        val params = hashMapOf<String, Any>()
+        params[ApiField.SIZE] = size
+        viewModel.onGetRides(params)
     }
 
     private fun initAdapter() {
@@ -67,6 +99,7 @@ class VehicleListFragment : Fragment() {
     private fun collectData() {
 
         requireActivity().collectLatestLifecycleFlow(viewModel.uiFlowRides) {
+            binding.root.isRefreshing = false
             when (it) {
                 is Resource.Loading -> {
                     updateLoading(true)
@@ -110,7 +143,6 @@ class VehicleListFragment : Fragment() {
             vehicleListAdapter.submitList(listSortedByVin)
             vehicleListAdapter.notifyDataSetChanged()
         }
-
     }
 
     private fun showEmptyData() {

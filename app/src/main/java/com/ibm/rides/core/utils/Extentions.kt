@@ -37,3 +37,10 @@ fun View.gone() {
     this.visibility = View.GONE
 }
 
+fun String.toValidatedInt(): Int? {
+    return try {
+        this.toInt()
+    } catch (e: java.lang.NumberFormatException) {
+        null
+    }
+}
