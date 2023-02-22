@@ -106,7 +106,6 @@ class VehicleListFragment : Fragment() {
             showEmptyData()
         } else {
             hideEmptyData()
-            vehicleListAdapter.submitList(listData)
             val listSortedByVin = listData.sortedBy { it.vin }
             vehicleListAdapter.submitList(listSortedByVin)
             vehicleListAdapter.notifyDataSetChanged()
